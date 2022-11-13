@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.7/sweetalert2.css"
         integrity="sha512-JzSVRb7c802/njMbV97pjo1wuJAE/6v9CvthGTDxiaZij/TFpPQmQPTcdXyUVucsvLtJBT6YwRb5LhVxX3pQHQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -110,13 +110,15 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/dashboard">
-                                <span data-feather="home" class="align-text-bottom"></span>
+                                <span class="align-text-bottom"></span>
+                                <i class="bi bi-speedometer2"></i>
                                 Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/keuangan">
-                                <span data-feather="home" class="align-text-bottom"></span>
+                            <a class="nav-link active" href="/keuangan">
+                                <span class="align-text-bottom"></span>
+                                <i class="bi bi-wallet"></i>
                                 Keuangan
                             </a>
                         </li>
