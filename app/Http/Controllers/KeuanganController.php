@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
 
+
 class KeuanganController extends Controller
 {
     /**
@@ -17,9 +18,11 @@ class KeuanganController extends Controller
     public function index()
     {
 
+        $saldo_in = Keuangan::where('tipe', 'in')->sum('nominal');
+        $saldo_out = Keuangan::where('tipe', 'out')->sum('nominal');
+        $saldo = $saldo_in - $saldo_out;
+
         if (request()->ajax()) {
-            // $data = Keuangan::latest()->get();
-            // return DataTables::of(Keuangan::query())->toJson();
 
 
             $data = Keuangan::latest()->get();
@@ -33,7 +36,7 @@ class KeuanganController extends Controller
                 ->make(true);
         }
 
-        return view('keuangan.index');
+        return view('keuangan.index', compact('saldo'));
     }
 
     /**
@@ -54,11 +57,16 @@ class KeuanganController extends Controller
      */
     public function store(Request $request)
     {
+
         $validated = $request->validate([
             'nominal' => 'required|numeric',
             'deskripsi' => 'required',
             'tanggal' => 'required',
         ]);
+
+        if ($request->saldo == 'out') {
+            $validated['tipe'] = 'out';
+        }
 
         Keuangan::create($validated);
 
@@ -107,7 +115,7 @@ class KeuanganController extends Controller
         Keuangan::where('id', $keuangan->id)
             ->update($validated);
 
-        return redirect('/keuangan')->with('success', 'Balance Successfully Added');
+        return redirect('/keuangan')->with('success', 'Balance Successfully Updated');
     }
 
     /**

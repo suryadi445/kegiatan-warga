@@ -16,27 +16,33 @@
             <button type="button" class="btn btn-primary ml-2 mr-2" data-bs-toggle="modal" data-bs-target="#modaltambah">
                 Tambah Saldo
             </button>
-            <button type="button" class="btn btn-warning ml-2 mr-2" data-bs-toggle="modal" data-bs-target="#edit_data">
+            <button type="button" class="btn btn-warning ml-2 mr-2" data-bs-toggle="modal" data-bs-target="#modalkurang">
                 Kurangi Saldo
             </button>
         </div>
     </div>
+    <div class="row mt-2">
+        <div class="col-sm-12">
+            <h4 class="text-info">Rp. {{ number_format($saldo, 0, ',', '.') }}</h4>
+        </div>
+    </div>
     <div class="row mt-3">
         <div class="col-sm-12">
-            <table class="table table-bordered yajra-datatable">
-                <thead class="bg-dark text-light">
-                    <tr>
-                        <th>Tipe</th>
-                        <th>Nominal</th>
-                        <th>Deskripsi</th>
-                        <th>Tanggal</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered yajra-datatable" width=100%>
+                    <thead class="bg-dark text-light">
+                        <tr>
+                            <th>Tipe</th>
+                            <th>Nominal</th>
+                            <th>Deskripsi</th>
+                            <th>Tanggal</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -55,6 +61,38 @@
                         <div class="form-floating mt-3 mb-3">
                             <input type="number" class="form-control" name="nominal" id="nominal"
                                 placeholder="example@gmail.com" required>
+                            <label for="nominal">Nominal</label>
+                        </div>
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="deskripsi" name="deskripsi" id="deskripsi" style="height: 100px" required></textarea>
+                            <label for="deskripsi">Deskripsi Kegiatan</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalkurang" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Kurangi Saldo</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('keuangan.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="hidden" name="saldo" value="out">
+                        <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="number" class="form-control" name="nominal" id="nominal"
+                                max="{{ $saldo }}" placeholder="example@gmail.com" required>
                             <label for="nominal">Nominal</label>
                         </div>
                         <div class="form-floating">
@@ -157,10 +195,6 @@
                 {
                     data: 'tanggal',
                     name: 'tanggal'
-                },
-                {
-                    data: 'status',
-                    name: 'status'
                 },
                 {
                     data: 'action',

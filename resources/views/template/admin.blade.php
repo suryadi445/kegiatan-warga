@@ -139,7 +139,12 @@
                 <div class="row mt-3">
                     <div class="col-sm-12">
                         <div class="alert alert-secondary" role="alert">
-                            <a href="#">Home</a> / <a href="#">User</a>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                </ol>
+                            </nav>
                         </div>
                     </div>
                 </div>
@@ -166,6 +171,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.7/sweetalert2.min.js"
         integrity="sha512-jWnZswpC+en54H2EgAsmbQ6l+71tiRawlnmkw31sthq4EGzLKPXG3MQAGIUgWcw8jumkjPNHKHHS5odj+lHudw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        // document.getElementById("toastbtn").onclick = function() {
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        var toastList = toastElList.map(function(toastEl) {
+            // Creates an array of toasts (it only initializes them)
+            return new bootstrap.Toast(toastEl) // No need for options; use the default options
+        });
+        toastList.forEach(toast => toast.show()); // This show them
+
+        // console.log(toastList); // Testing to see if it works
+        // };
+    </script>
 </body>
 
 </html>
