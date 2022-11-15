@@ -8,6 +8,7 @@
             <form action="{{ $action }}" method="{{ $method }}">
                 @csrf
                 <div class="modal-body">
+                    {{ $slot }}
                     <x-input tipe="date" attr="tanggal"></x-input>
                     <x-input-float tipe="text" attr="nominal" text="Nominal" placeholder="example@gmail.com">
                     </x-input-float>
@@ -20,7 +21,4 @@
             </form>
         </div>
     </div>
-</div>
-<div>
-    <!-- Waste no more time arguing what a good man should be, be one. - Marcus Aurelius -->
 </div>

@@ -17,12 +17,12 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="d-grid gap-2">
-                        <button type="button" class="btn btn-primary ml-2 mr-2" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-primary ml-2 mr-2 btn-mdl" data-bs-toggle="modal"
                             data-bs-target="#modaltambah">
                             <i class="bi bi-plus"></i>
                             Tambah Saldo
                         </button>
-                        <button type="button" class="btn btn-warning ml-2 mr-2" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-warning ml-2 mr-2 btn-mdl" data-bs-toggle="modal"
                             data-bs-target="#modalkurang">
                             <i class="bi bi-dash"></i>
                             Kurangi Saldo
@@ -54,79 +54,24 @@
     </div>
 
     <x-modal title="Tambah Saldo" modal="modaltambah" method="POST" action="{{ route('keuangan.store') }}"></x-modal>
-    <x-modal title="Kurangi Saldo" modal="modalkurang" method="POST" action="{{ route('keuangan.store') }}"></x-modal>
-
-    {{-- <div class="modal fade" id="modalkurang" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Kurangi Saldo</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="{{ route('keuangan.store') }}" method="POST">
-                    @csrf
-                    <div class="modal-body">
-                        <input type="hidden" name="saldo" value="out">
-                        <input type="date" class="form-control" id="tanggal" name="tanggal" required>
-
-                        <div class="form-floating mt-3 mb-3">
-                            <input type="number" class="form-control" name="nominal" id="nominal"
-                                max="{{ $saldo }}" placeholder="example@gmail.com" required>
-                            <label for="nominal">Nominal</label>
-                        </div>
-                        <div class="form-floating">
-                            <textarea class="form-control" placeholder="deskripsi" name="deskripsi" id="deskripsi" style="height: 100px" required></textarea>
-                            <label for="deskripsi">Deskripsi Kegiatan</label>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div> --}}
-
-    <div class="modal fade" id="edit_data" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Kurangi Saldo</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="" method="POST" id="form_edit">
-                    @csrf
-                    @method('PUT')
-
-                    <div class="modal-body">
-                        <input type="date" class="form-control" id="tanggal_edit" name="tanggal" required>
-
-                        <div class="form-floating mt-3 mb-3">
-                            <input type="number" class="form-control" name="nominal" id="nominal_edit"
-                                placeholder="example@gmail.com" required>
-                            <label for="nominal">Nominal</label>
-                        </div>
-                        <div class="form-floating">
-                            <textarea class="form-control" placeholder="deskripsi" name="deskripsi" id="deskripsi_edit" style="height: 100px"
-                                required></textarea>
-                            <label for="deskripsi">Deskripsi Kegiatan</label>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    <x-modal title="Kurangi Saldo" modal="modalkurang" method="POST" action="{{ route('keuangan.store') }}">
+        <input type="hidden" name="saldo" value="out">
+    </x-modal>
+    <x-modal title="Update" modal="edit_data" method="POST" action="">
+        @csrf
+        @method('PUT')
+    </x-modal>
 @endsection
 
 @push('jquery')
     <script>
         $(document).ready(function() {
 
+            $('.btn-mdl').on('click', function() {
+                $(".nominal").val('');
+                $(".deskripsi").val('');
+                $(".tanggal").val('');
+            })
 
             var table = $('.yajra-datatable').DataTable({
                 processing: true,
@@ -192,17 +137,18 @@
 
         function btn_edit(id) {
             let myModal = new bootstrap.Modal(document.getElementById('edit_data'))
-            let form_edit = document.getElementById('form_edit')
+            // let form_edit = document.getElementById('form_edit')
             $.ajax({
                 type: "get",
-                url: `/keuangan` + '/' + id + '/edit',
+                url: '/keuangan' + '/' + id + '/edit',
                 success: function(response) {
-                    document.getElementById('nominal_edit').value = response.nominal
-                    document.getElementById('deskripsi_edit').value = response.deskripsi
-                    document.getElementById('tanggal_edit').value = response.tanggal
-
-                    form_edit.setAttribute("action", "{{ route('keuangan.index') }}" + '/' + id)
                     myModal.show()
+                    $(".nominal").val(response.nominal);
+                    $(".deskripsi").val(response.deskripsi);
+                    $(".tanggal").val(response.tanggal);
+                    $('#edit_data form').attr('action', "{{ route('keuangan.index') }}" + '/' + id);
+
+                    // form_edit.setAttribute("action", "{{ route('keuangan.index') }}" + '/' + id)
                 }
             });
         }

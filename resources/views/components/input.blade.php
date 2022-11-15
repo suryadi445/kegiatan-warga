@@ -1,1 +1,2 @@
-<input type="{{ $tipe }}" class="form-control" id="{{ $attr }}" name="{{ $attr }}">
+<input type="{{ $tipe }}" class="form-control {{ $attr }}" id="{{ $attr }}"
+    name="{{ $attr }}">

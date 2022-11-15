@@ -66,11 +66,14 @@ class KeuanganController extends Controller
 
         if ($request->saldo == 'out') {
             $validated['tipe'] = 'out';
+            $keterangan = 'Reduce';
+        } else {
+            $keterangan = 'Added';
         }
 
         Keuangan::create($validated);
 
-        return redirect('/keuangan')->with('success', 'Balance Successfully Added');
+        return redirect('/keuangan')->with('success', "Balance Successfully $keterangan");
     }
 
     /**
