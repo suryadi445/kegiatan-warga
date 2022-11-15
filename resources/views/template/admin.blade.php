@@ -17,6 +17,7 @@
         integrity="sha512-JzSVRb7c802/njMbV97pjo1wuJAE/6v9CvthGTDxiaZij/TFpPQmQPTcdXyUVucsvLtJBT6YwRb5LhVxX3pQHQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -73,10 +74,12 @@
             box-shadow: none !important;
         }
     </style>
-
-
     <!-- Custom styles for this template -->
     <link href="/css/dashboard.css" rel="stylesheet">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    @stack('jquery')
 </head>
 
 <body>
@@ -120,6 +123,12 @@
                                 <span class="align-text-bottom"></span>
                                 <i class="bi bi-wallet"></i>
                                 Keuangan
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/activity">
+                                <span class="align-text-bottom"></span>
+                                <i class="bi bi-journal-text"></i> Kegiatan
                             </a>
                         </li>
                     </ul>
@@ -171,6 +180,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.7/sweetalert2.min.js"
         integrity="sha512-jWnZswpC+en54H2EgAsmbQ6l+71tiRawlnmkw31sthq4EGzLKPXG3MQAGIUgWcw8jumkjPNHKHHS5odj+lHudw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     <script>
         // document.getElementById("toastbtn").onclick = function() {
         var toastElList = [].slice.call(document.querySelectorAll('.toast'))
