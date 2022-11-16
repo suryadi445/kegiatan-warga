@@ -10,7 +10,7 @@ class modal extends Component
     public $action;
     public $method;
     public $modal;
-    public function __construct($title, $action, $method, $modal)
+    public function __construct($title = null, $action = null, $method = null, $modal = null)
     {
         $this->method = $method;
         $this->action = $action;

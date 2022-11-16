@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="d-grid gap-2">
-                        <button type="button" class="btn btn-primary ml-2 mr-2" data-bs-toggle="modal"
+                        <button type="button" class="btn-mdl btn btn-primary ml-2 mr-2" data-bs-toggle="modal"
                             data-bs-target="#modaltambah">
                             <i class="bi bi-plus"></i>
                             Tambah Kegiatan
@@ -59,12 +59,28 @@
         <x-input-float tipe="text" attr="lokasi" placeholder="Lokasi Kegiatan" text="Lokasi Kegiatan"></x-input-float>
         <x-textarea attr="deskripsi" height="100px" placeholder="Deskripsi Kegiatan" text="Deskripsi Kegiatan"></x-textarea>
     </x-modal>
+    <x-modal title="Update" modal="edit_data" method="POST" action="">
+        @csrf
+        @method('PUT')
+        <x-input tipe="number" attr="peserta" placeholder="Jumlah Peserta"></x-input>
+        <br>
+        <x-input tipe="date" attr="tgl" placeholder="Tanggal" text="Tanggal"></x-input>
+        <br>
+        <x-input tipe="time" attr="time" placeholder="Jam" text="Jam"></x-input>
+        <x-input-float tipe="text" attr="tuan_rumah" placeholder="Tuan Rumah" text="Tuan Rumah"></x-input-float>
+        <x-input-float tipe="text" attr="judul" placeholder="Judul Kegiatan" text="Judul Kegiatan"></x-input-float>
+        <x-input-float tipe="text" attr="lokasi" placeholder="Lokasi Kegiatan" text="Lokasi Kegiatan"></x-input-float>
+        <x-textarea attr="deskripsi" height="100px" placeholder="Deskripsi Kegiatan" text="Deskripsi Kegiatan"></x-textarea>
+    </x-modal>
 @endsection
 
 @push('jquery')
     <script>
         $(document).ready(function() {
 
+            $('.btn-mdl').on('click', function() {
+                $(':input').val('');
+            })
 
             var table = $('.yajra-datatable').DataTable({
                 processing: true,
@@ -96,11 +112,14 @@
                     },
                     {
                         data: 'peserta',
-                        name: 'peserta'
+                        name: 'peserta',
+
                     },
                     {
-                        data: 'peserta',
-                        name: 'peserta'
+                        data: 'tgl_status',
+                        name: 'tgl_status',
+                        orderable: true,
+                        searchable: true
                     },
                     {
                         data: 'action',
@@ -146,17 +165,19 @@
 
         function btn_edit(id) {
             let myModal = new bootstrap.Modal(document.getElementById('edit_data'))
-            let form_edit = document.getElementById('form_edit')
             $.ajax({
                 type: "get",
-                url: `/keuangan` + '/' + id + '/edit',
+                url: '/activity' + '/' + id + '/edit',
                 success: function(response) {
-                    document.getElementById('nominal_edit').value = response.nominal
-                    document.getElementById('deskripsi_edit').value = response.deskripsi
-                    document.getElementById('tanggal_edit').value = response.tanggal
-
-                    form_edit.setAttribute("action", "{{ route('keuangan.index') }}" + '/' + id)
                     myModal.show()
+                    $(".peserta").val(response.peserta);
+                    $(".tgl").val(response.tgl);
+                    $(".time").val(response.time);
+                    $(".tuan_rumah").val(response.tuan_rumah);
+                    $(".judul").val(response.judul);
+                    $(".lokasi").val(response.lokasi);
+                    $(".deskripsi").val(response.deskripsi);
+                    $('#edit_data form').attr('action', "{{ route('activity.index') }}" + '/' + id);
                 }
             });
         }

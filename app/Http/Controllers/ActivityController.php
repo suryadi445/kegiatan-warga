@@ -21,10 +21,14 @@ class ActivityController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<a href="javascript:void(0)" data-id="' . $row->id . '" class="btn btn-warning btn-sm" onclick="btn_edit(' . $row->id . ')">Edit</a> <a href="javascript:void(0)" data-id="' . $row->id . '" class="btn btn-danger btn-sm btn_delete">Delete</a>';
+                    $actionBtn = '<a href="javascript:void(0)" data-id="' . $row->id . '" class="btn btn-warning btn-sm d-block" onclick="btn_edit(' . $row->id . ')">Edit</a> <a href="javascript:void(0)" data-id="' . $row->id . '" class="btn btn-danger btn-sm d-block mt-2 btn_delete">Delete</a>';
                     return $actionBtn;
                 })
-                ->rawColumns(['action'])
+                ->editColumn('tgl_status', function ($row) {
+                    $span = '<span class="badge text-bg-primary">' . tgl_status($row->tgl) . '</span>';
+                    return $span;
+                })
+                ->rawColumns(['action', 'tgl_status'])
                 ->make(true);
         }
         return view('activity.index');
@@ -81,7 +85,8 @@ class ActivityController extends Controller
      */
     public function edit(Activity $activity)
     {
-        //
+        $data = Activity::find($activity->id);
+        return response()->json($data);
     }
 
     /**
@@ -93,7 +98,20 @@ class ActivityController extends Controller
      */
     public function update(Request $request, Activity $activity)
     {
-        //
+        $validated = $request->validate([
+            'peserta' => 'numeric',
+            'tgl' => 'required|date',
+            'time' => 'required',
+            'tuan_rumah' => 'required',
+            'judul' => 'required',
+            'lokasi' => 'required',
+            'deskripsi' => 'required',
+        ]);
+
+        Activity::where('id', $activity->id)
+            ->update($validated);
+
+        return redirect('/activity')->with('success', "Activity Successfully Updated");
     }
 
     /**

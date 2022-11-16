@@ -8,10 +8,14 @@ class Input extends Component
 {
     public $attr;
     public $tipe;
-    public function __construct($attr, $tipe)
+    public $text;
+    public $placeholder;
+    public function __construct($attr = null, $tipe = null, $text = null, $placeholder = null)
     {
         $this->tipe = $tipe;
         $this->attr = $attr;
+        $this->text = $text;
+        $this->placeholder = $placeholder;
     }
 
     /**
