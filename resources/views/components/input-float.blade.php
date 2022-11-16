@@ -3,3 +3,8 @@
         id="{{ $attr }}" placeholder="{{ $placeholder }}">
     <label for="{{ $attr }}">{{ $text }}</label>
 </div>
+
+{{-- tipe --}}
+{{-- attr --}}
+{{-- placeholder --}}
+{{-- text --}}

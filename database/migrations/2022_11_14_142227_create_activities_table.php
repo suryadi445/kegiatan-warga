@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->string('lokasi');
             $table->date('tgl');
-            $table->integer('peserta');
+            $table->integer('peserta')->nullable();
             $table->time('time');
             $table->string('image')->nullable();
             $table->softDeletes();

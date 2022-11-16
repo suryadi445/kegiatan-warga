@@ -3,3 +3,7 @@
         id="{{ $attr }}" style="{{ $height }}"></textarea>
     <label for="{{ $attr }}">{{ $text }}</label>
 </div>
+
+{{-- attr --}}
+{{-- height --}}
+{{-- text --}}

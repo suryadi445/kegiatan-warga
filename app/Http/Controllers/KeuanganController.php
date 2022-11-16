@@ -24,7 +24,6 @@ class KeuanganController extends Controller
 
         if (request()->ajax()) {
 
-
             $data = Keuangan::latest()->get();
             return Datatables::of($data)
                 ->addIndexColumn()

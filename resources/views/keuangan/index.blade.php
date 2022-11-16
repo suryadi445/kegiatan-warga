@@ -53,13 +53,26 @@
         </div>
     </div>
 
-    <x-modal title="Tambah Saldo" modal="modaltambah" method="POST" action="{{ route('keuangan.store') }}"></x-modal>
+    <x-modal title="Tambah Saldo" modal="modaltambah" method="POST" action="{{ route('keuangan.store') }}">
+        <x-input tipe="date" attr="tanggal"></x-input>
+        <x-input-float tipe="text" attr="nominal" text="Nominal" placeholder="example@gmail.com">
+        </x-input-float>
+        <x-textarea attr="deskripsi" text="Deskripsi Kegiatan" height="height: 100px"></x-textarea>
+    </x-modal>
     <x-modal title="Kurangi Saldo" modal="modalkurang" method="POST" action="{{ route('keuangan.store') }}">
         <input type="hidden" name="saldo" value="out">
+        <x-input tipe="date" attr="tanggal"></x-input>
+        <x-input-float tipe="text" attr="nominal" text="Nominal" placeholder="example@gmail.com">
+        </x-input-float>
+        <x-textarea attr="deskripsi" text="Deskripsi Kegiatan" height="height: 100px"></x-textarea>
     </x-modal>
     <x-modal title="Update" modal="edit_data" method="POST" action="">
         @csrf
         @method('PUT')
+        <x-input tipe="date" attr="tanggal"></x-input>
+        <x-input-float tipe="text" attr="nominal" text="Nominal" placeholder="example@gmail.com">
+        </x-input-float>
+        <x-textarea attr="deskripsi" text="Deskripsi Kegiatan" height="height: 100px"></x-textarea>
     </x-modal>
 @endsection
 

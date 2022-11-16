@@ -9,10 +9,7 @@
                 @csrf
                 <div class="modal-body">
                     {{ $slot }}
-                    <x-input tipe="date" attr="tanggal"></x-input>
-                    <x-input-float tipe="text" attr="nominal" text="Nominal" placeholder="example@gmail.com">
-                    </x-input-float>
-                    <x-textarea attr="deskripsi" text="Deskripsi Kegiatan" height="height: 100px"></x-textarea>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -22,3 +19,9 @@
         </div>
     </div>
 </div>
+
+{{-- modal --}}
+{{-- title --}}
+{{-- action --}}
+{{-- method --}}
+{{-- slot --}}

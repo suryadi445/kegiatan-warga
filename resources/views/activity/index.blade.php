@@ -38,7 +38,7 @@
                             <th>Deskripsi</th>
                             <th>Tanggal</th>
                             <th>Jam</th>
-                            <th>Rumah Peserta</th>
+                            <th>Jumlah Peserta</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -50,42 +50,15 @@
         </div>
     </div>
 
-    <x-modal title="Tambah Saldo" modal="modaltambah" method="POST" action="{{ route('keuangan.store') }}"></x-modal>
-
-
-    <div class="modal fade" id="edit_data" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Kurangi Saldo</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="" method="POST" id="form_edit">
-                    @csrf
-                    @method('PUT')
-
-                    <div class="modal-body">
-                        <input type="date" class="form-control" id="tanggal_edit" name="tanggal" required>
-
-                        <div class="form-floating mt-3 mb-3">
-                            <input type="number" class="form-control" name="nominal" id="nominal_edit"
-                                placeholder="example@gmail.com" required>
-                            <label for="nominal">Nominal</label>
-                        </div>
-                        <div class="form-floating">
-                            <textarea class="form-control" placeholder="deskripsi" name="deskripsi" id="deskripsi_edit" style="height: 100px"
-                                required></textarea>
-                            <label for="deskripsi">Deskripsi Kegiatan</label>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    <x-modal title="Tambah Kegiatan" modal="modaltambah" method="POST" action="{{ route('activity.store') }}">
+        <x-input tipe="date" attr="tgl" placeholder="Tanggal" text="Tanggal"></x-input>
+        <br>
+        <x-input tipe="time" attr="time" placeholder="Jam" text="Jam"></x-input>
+        <x-input-float tipe="text" attr="tuan_rumah" placeholder="Tuan Rumah" text="Tuan Rumah"></x-input-float>
+        <x-input-float tipe="text" attr="judul" placeholder="Judul Kegiatan" text="Judul Kegiatan"></x-input-float>
+        <x-input-float tipe="text" attr="lokasi" placeholder="Lokasi Kegiatan" text="Lokasi Kegiatan"></x-input-float>
+        <x-textarea attr="deskripsi" height="100px" placeholder="Deskripsi Kegiatan" text="Deskripsi Kegiatan"></x-textarea>
+    </x-modal>
 @endsection
 
 @push('jquery')
@@ -96,22 +69,38 @@
             var table = $('.yajra-datatable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('keuangan.index') }}",
+                ajax: "{{ route('activity.index') }}",
                 columns: [{
-                        data: 'tipe',
-                        name: 'tipe'
+                        data: 'judul',
+                        name: 'judul'
                     },
                     {
-                        data: 'nominal',
-                        name: 'nominal'
+                        data: 'tuan_rumah',
+                        name: 'tuan_rumah'
+                    },
+                    {
+                        data: 'lokasi',
+                        name: 'lokasi'
                     },
                     {
                         data: 'deskripsi',
                         name: 'deskripsi'
                     },
                     {
-                        data: 'tanggal',
-                        name: 'tanggal'
+                        data: 'tgl',
+                        name: 'tgl'
+                    },
+                    {
+                        data: 'time',
+                        name: 'time'
+                    },
+                    {
+                        data: 'peserta',
+                        name: 'peserta'
+                    },
+                    {
+                        data: 'peserta',
+                        name: 'peserta'
                     },
                     {
                         data: 'action',
