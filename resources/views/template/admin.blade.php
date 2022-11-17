@@ -131,6 +131,12 @@
                                 <i class="bi bi-journal-text"></i> Kegiatan
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/identity">
+                                <span class="align-text-bottom"></span>
+                                <i class="bi bi-person-circle"></i> Profile
+                            </a>
+                        </li>
                     </ul>
 
                     <h6

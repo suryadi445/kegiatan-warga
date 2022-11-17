@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\IdentityController;
 use App\Http\Controllers\KeuanganController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,6 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('aut
 
 // Route for Actifity
 Route::resource('/activity', ActivityController::class);
+
+// Route for Identity
+Route::resource('/identity', IdentityController::class);
