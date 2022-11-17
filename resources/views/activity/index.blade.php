@@ -59,8 +59,8 @@
         <x-input-float tipe="text" attr="lokasi" placeholder="Lokasi Kegiatan" text="Lokasi Kegiatan"></x-input-float>
         <x-textarea attr="deskripsi" height="100px" placeholder="Deskripsi Kegiatan" text="Deskripsi Kegiatan"></x-textarea>
     </x-modal>
+
     <x-modal title="Update" modal="edit_data" method="POST" action="">
-        @csrf
         @method('PUT')
         <x-input tipe="number" attr="peserta" placeholder="Jumlah Peserta"></x-input>
         <br>
@@ -79,7 +79,8 @@
         $(document).ready(function() {
 
             $('.btn-mdl').on('click', function() {
-                $(':input').val('');
+                $('input:not([name="_token"])').val('')
+                $('.deskripsi').val('')
             })
 
             var table = $('.yajra-datatable').DataTable({
@@ -150,7 +151,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "DELETE",
-                            url: "{{ route('keuangan.index') }}" + '/' + id,
+                            url: "{{ route('activity.index') }}" + '/' + id,
                             success: function(response) {
                                 table.draw();
                             }

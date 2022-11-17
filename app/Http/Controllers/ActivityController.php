@@ -55,10 +55,10 @@ class ActivityController extends Controller
         $validated = $request->validate([
             'tgl' => 'required',
             'time' => 'required',
-            'tuan_rumah' => 'required|min:3|max:255',
-            'judul' => 'required|min:3|max:255',
-            'lokasi' => 'required|min:3|max:255',
-            'deskripsi' => 'required|min:10|max:255',
+            'tuan_rumah' => 'required',
+            'judul' => 'required',
+            'lokasi' => 'required',
+            'deskripsi' => 'required',
         ]);
 
         Activity::create($validated);
@@ -122,6 +122,7 @@ class ActivityController extends Controller
      */
     public function destroy(Activity $activity)
     {
-        //
+        $activity = Activity::find($activity->id);
+        $activity->delete();
     }
 }
