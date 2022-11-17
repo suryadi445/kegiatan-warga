@@ -14,7 +14,8 @@ class IdentityController extends Controller
      */
     public function index()
     {
-        return view('identity.index');
+        $identity = Identity::find(1);
+        return view('identity.index', compact('identity'));
     }
 
     /**
@@ -35,7 +36,31 @@ class IdentityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $identity = Identity::where('id', 1)->get();
+
+        if ($identity) {
+            $update = Identity::where('id', 1)
+                ->update([
+                    'logo' => $request->logo,
+                    'nama_profile' => $request->nama_profile,
+                    'alamat' => $request->alamat,
+                    'telepon' => $request->telepon,
+                    'whatsapp' => $request->whatsapp,
+                    'slogan' => $request->slogan,
+                ]);
+        } else {
+            $insert = Identity::create([
+                'logo' => $request->logo,
+                'nama_profile' => $request->nama_profile,
+                'alamat' => $request->alamat,
+                'telepon' => $request->telepon,
+                'whatsapp' => $request->whatsapp,
+                'slogan' => $request->slogan,
+            ]);
+        }
+
+        return redirect('/identity')->with('success', 'Profile Successfully Change');
     }
 
     /**

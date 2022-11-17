@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Identity extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+    // use SoftDeletes;
 
+    // protected $fillable = ['id'];
     protected $guarded = ['id'];
 }

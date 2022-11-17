@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('identities', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_profile')->nullable();
-            $table->string('alamat')->nullable();
-            $table->string('telepon')->nullable();
-            $table->string('whatsapp')->nullable();
-            $table->string('logo')->nullable();
-            $table->text('slogan')->nullable();
+            $table->string('nama_profile');
+            $table->string('alamat');
+            $table->string('telepon');
+            $table->string('whatsapp');
+            $table->string('logo');
+            $table->text('slogan');
             $table->timestamps();
         });
     }
