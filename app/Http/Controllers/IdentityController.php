@@ -36,13 +36,28 @@ class IdentityController extends Controller
      */
     public function store(Request $request)
     {
+        $validation = $request->validate([
+            'logo' => 'mimes:jpg,png,jpeg|max:2048',
+        ]);
 
         $identity = Identity::where('id', 1)->get();
+        $image    = $identity[0]->logo;
+        if ($validation) {
+            $file       = $request->file('logo');
+            $name       = $file->getClientOriginalName();
+            $fileName   = time() . $name . '.' . $request->logo->extension();
+            $image      = '\images/uploads/' . $fileName;
+
+            $request->logo->move(public_path('images\uploads'), $fileName);
+            if ($identity[0]->logo) {
+                unlink(public_path() . $identity[0]->logo);
+            }
+        }
 
         if ($identity) {
             $update = Identity::where('id', 1)
                 ->update([
-                    'logo' => $request->logo,
+                    'logo' => $image,
                     'nama_profile' => $request->nama_profile,
                     'alamat' => $request->alamat,
                     'telepon' => $request->telepon,

@@ -22,7 +22,10 @@
                                 </td>
                                 <td>
                                     <div class="mb-3">
-                                        <input class="form-control" name="logo" type="file" id="formFile"
+                                        @if (!empty($identity->logo))
+                                            <img src="{{ $identity->logo }}" alt="image" width="10%">
+                                        @endif
+                                        <input class="form-control mt-2" name="logo" type="file" id="formFile"
                                             value="{{ $identity->logo }}">
                                     </div>
                                 </td>
