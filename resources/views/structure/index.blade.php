@@ -24,8 +24,8 @@
     <div class="row mt-3">
         <div class="col-sm-12">
             <div class="table-responsive">
-                <table class="table table-bordered border-dark">
-                    <thead>
+                <table class="table table-striped">
+                    <thead class="bg-secondary text-dark">
                         <tr>
                             <th scope="col">Foto</th>
                             <th scope="col">Nama</th>
@@ -36,9 +36,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-
-                        </tr>
+                        @foreach ($structure as $item)
+                            <tr>
+                                <td>
+                                    <img src="{{ $item->foto }}" alt="image" width="35px">
+                                </td>
+                                <td>{{ $item->nama }}</td>
+                                <td>{{ $item->jabatan }}</td>
+                                <td>{{ $item->no_hp }}</td>
+                                <td>{{ $item->alamat }}</td>
+                                <td>
+                                    <a href="" class="btn btn-warning">Edit</a>
+                                    <a href="" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
