@@ -46,8 +46,10 @@
                                 <td>{{ $item->no_hp }}</td>
                                 <td>{{ $item->alamat }}</td>
                                 <td>
-                                    <a href="" class="btn btn-warning">Edit</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
+                                    <button type="button" class="btn-mdl btn btn-warning" data-bs-toggle="modal"
+                                        data-bs-target="#edit_data" onclick="btn_edit({{ $item->id }})">
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </button> <a href="" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -67,3 +69,72 @@
     <x-input-float tipe="number" attr="no_hp" placeholder="Nomor Handphone" text="Nomor Handphone"></x-input-float>
     <x-textarea attr="alamat" height="100px" placeholder="Alamat Anggota" text="Alamat Anggota"></x-textarea>
 </x-modal>
+
+<x-modal title="Update" modal="edit_data" method="POST" action="{{ route('structure.update', $item->id) }}">
+    @csrf
+    @method('PUT')
+    <div class="mb-3">
+        <input class="form-control" type="file" name="foto" id="foto">
+    </div>
+    <x-input-float tipe="text" attr="nama" placeholder="Nama" text="Nama"></x-input-float>
+    <x-input-float tipe="text" attr="jabatan" placeholder="Jabatan" text="Jabatan"></x-input-float>
+    <x-input-float tipe="number" attr="no_hp" placeholder="Nomor Handphone" text="Nomor Handphone"></x-input-float>
+    <x-textarea attr="alamat" height="100px" placeholder="Alamat Anggota" text="Alamat Anggota"></x-textarea>
+</x-modal>
+
+@push('jquery')
+    <script>
+        $(document).ready(function() {
+            $('.btn-mdl').on('click', function() {
+                $('input:not([name="_token"])').val('')
+                $('.alamat').val('')
+            })
+
+            $(document).on('click', '.btn_delete', function() {
+                var id = $(this).attr('data-id');
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                Swal.fire({
+                    title: 'Do you want to save the changes?',
+                    icon: 'warning',
+                    showDenyButton: false,
+                    showCancelButton: true,
+                    confirmButtonText: 'Save',
+                    confirmButtonColor: '#d23030',
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "DELETE",
+                            url: "{{ route('keuangan.index') }}" + '/' + id,
+                            success: function(response) {
+                                table.draw();
+                            }
+                        });
+                    }
+                })
+
+
+            });
+
+        }); // end of ready function
+
+        function btn_edit(id) {
+            $.ajax({
+                type: "get",
+                url: '/structure' + '/' + id + '/edit',
+                success: function(response) {
+                    $(".nama").val(response.nama);
+                    $(".jabatan").val(response.jabatan);
+                    $(".no_hp").val(response.no_hp);
+                    $(".alamat").val(response.alamat);
+                    $('#edit_data form').attr('action', "{{ route('structure.index') }}" + '/' + id);
+                }
+            });
+        }
+    </script>
+@endpush

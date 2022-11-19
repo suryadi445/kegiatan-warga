@@ -91,7 +91,9 @@ class StructureController extends Controller
      */
     public function edit(Structure $structure)
     {
-        //
+        $structure = Structure::find($structure->id);
+
+        return response()->json($structure);
     }
 
     /**
@@ -103,7 +105,34 @@ class StructureController extends Controller
      */
     public function update(Request $request, Structure $structure)
     {
-        //
+        $validated = $request->validate([
+            'foto' => 'mimes:jpg,png,jpeg|max:2048',
+            'nama' => 'required',
+            'alamat' => 'required',
+            'jabatan' => 'required',
+            'no_hp' => 'required',
+        ]);
+
+        if ($validated) {
+            $file       = $request->file('foto');
+            if ($file) {
+                $name       = $file->getClientOriginalName();
+                $fileName   = time() . $name . '.' . $request->foto->extension();
+                $foto      = '\images/uploads/' . $fileName;
+                $request->foto->move(public_path('images\uploads'), $fileName);
+            }
+
+            $validated['foto'] = $foto ?? $structure->id;
+
+            $update = Structure::where('id', $structure->id)
+                ->update($validated);
+        }
+
+        if ($update) {
+            return redirect()->back()->with('success', 'Profile Successfully Update');
+        } else {
+            return redirect()->back()->with('failed', 'Profile Failed To Updated');
+        }
     }
 
     /**
