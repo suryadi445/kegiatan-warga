@@ -1,0 +1,89 @@
+[33mcommit de0377695ec21ba6921231ba221241303416dc0a[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: suryadi445 <suryadi.hhb@gmail.com>
+Date:   Sat Nov 19 08:27:27 2022 +0700
+
+    create update structure
+
+[33mcommit 15fa08949c97de1eb5df81a447e64b160baef00b[m
+Author: suryadi445 <suryadi.hhb@gmail.com>
+Date:   Sat Nov 19 07:49:45 2022 +0700
+
+    show data in sctructure blade
+
+[33mcommit 408ac3d3a20655d40d6b871cb502e57fb8239024[m
+Author: suryadi445 <suryadi.hhb@gmail.com>
+Date:   Sat Nov 19 07:41:47 2022 +0700
+
+    create function store in structureController and add validation error in toast blade
+
+[33mcommit c059d8c4c5fea1215031de143849603fc26483bd[m
+Author: suryadi445 <suryadi.hhb@gmail.com>
+Date:   Fri Nov 18 22:15:21 2022 +0700
+
+    create table and resource for Structure
+
+[33mcommit 80ae5f057b97d8deac207c2573596b32d05330c2[m
+Author: suryadi445 <suryadi.hhb@gmail.com>
+Date:   Fri Nov 18 20:39:20 2022 +0700
+
+    create function upload in page identity
+
+[33mcommit 10763c7233b7d2e91fe9e26216d42c6e56ebc024[m
+Author: suryadi445 <suryadi.hhb@gmail.com>
+Date:   Fri Nov 18 06:07:07 2022 +0700
+
+    create page profile and function store
+
+[33mcommit e591ab1f9420689d13adb9277530db486967936c[m
+Author: suryadi445 <suryadi.hhb@gmail.com>
+Date:   Thu Nov 17 21:03:28 2022 +0700
+
+    create mvc for identity and using resources identity route
+
+[33mcommit 43d927b47c4826cd52ae866bf690f8068fade7ec[m
+Author: suryadi445 <suryadi.hhb@gmail.com>
+Date:   Thu Nov 17 20:47:27 2022 +0700
+
+    create function soft delete in activity controller
+
+[33mcommit aaf057afce18b4631040fd29d0ed903e924b369c[m
+Author: suryadi445 <suryadi.hhb@gmail.com>
+Date:   Thu Nov 17 06:29:59 2022 +0700
+
+    create helper for status_tgl, create update actifity change timezone to jakarta
+
+[33mcommit d82019d040c6522a4dcfb7e6eb5a19e6f6c6c3f2[m
+Author: suryadi445 <suryadi.hhb@gmail.com>
+Date:   Wed Nov 16 20:17:05 2022 +0700
+
+    create kegiatan add and show to datatable
+
+[33mcommit c86ed10ddc21c552f84d8f6f2ef0777e8eef129c[m
+Author: suryadi445 <suryadi.hhb@gmail.com>
+Date:   Tue Nov 15 22:08:15 2022 +0700
+
+    create dinamic modal edit using component
+
+[33mcommit e7991667ed3e036abdc507b000d532a203400efb[m
+Author: suryadi445 <suryadi.hhb@gmail.com>
+Date:   Tue Nov 15 07:33:19 2022 +0700
+
+    create component for inut,inputfloat,modal,textarea and create resource activity
+
+[33mcommit f9e65b1f63a85a9c260be32c94987dd283e7cdc0[m
+Author: suryadi445 <suryadi.hhb@gmail.com>
+Date:   Mon Nov 14 06:42:33 2022 +0700
+
+    add kurangi saldo in keuangan page
+
+[33mcommit 966e8e21f87537b43fe20e70b307df14bae0a222[m
+Author: suryadi445 <suryadi.hhb@gmail.com>
+Date:   Mon Nov 14 05:54:41 2022 +0700
+
+    add font awesome to project
+
+[33mcommit cb2c7b9449ae987297641e8ab8a93daeb3233bda[m
+Author: suryadi445 <suryadi.hhb@gmail.com>
+Date:   Sat Nov 12 05:46:39 2022 +0700
+
+    git initialize from local to github

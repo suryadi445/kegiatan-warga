@@ -49,7 +49,9 @@
                                     <button type="button" class="btn-mdl btn btn-warning" data-bs-toggle="modal"
                                         data-bs-target="#edit_data" onclick="btn_edit({{ $item->id }})">
                                         <i class="bi bi-pencil-square"></i> Edit
-                                    </button> <a href="" class="btn btn-danger">Delete</a>
+                                    </button> <a href="" data-id="{{ $item->id }}"
+                                        class="btn btn-danger btn_delete">
+                                        <i class="bi bi-trash"></i> Delete</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -70,7 +72,7 @@
     <x-textarea attr="alamat" height="100px" placeholder="Alamat Anggota" text="Alamat Anggota"></x-textarea>
 </x-modal>
 
-<x-modal title="Update" modal="edit_data" method="POST" action="{{ route('structure.update', $item->id) }}">
+<x-modal title="Update" modal="edit_data" method="POST" action="">
     @csrf
     @method('PUT')
     <div class="mb-3">
@@ -85,12 +87,16 @@
 @push('jquery')
     <script>
         $(document).ready(function() {
+
             $('.btn-mdl').on('click', function() {
-                $('input:not([name="_token"])').val('')
-                $('.alamat').val('')
+                $(".nama").val('');
+                $(".jabatan").val('');
+                $(".no_hp").val('');
+                $(".alamat").val('');
             })
 
-            $(document).on('click', '.btn_delete', function() {
+            $(document).on('click', '.btn_delete', function(e) {
+                e.preventDefault();
                 var id = $(this).attr('data-id');
 
                 $.ajaxSetup({
@@ -110,9 +116,9 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "DELETE",
-                            url: "{{ route('keuangan.index') }}" + '/' + id,
+                            url: "{{ route('structure.index') }}" + '/' + id,
                             success: function(response) {
-                                table.draw();
+                                window.location.reload();
                             }
                         });
                     }
@@ -128,11 +134,14 @@
                 type: "get",
                 url: '/structure' + '/' + id + '/edit',
                 success: function(response) {
+                    console.log(response);
                     $(".nama").val(response.nama);
                     $(".jabatan").val(response.jabatan);
                     $(".no_hp").val(response.no_hp);
                     $(".alamat").val(response.alamat);
                     $('#edit_data form').attr('action', "{{ route('structure.index') }}" + '/' + id);
+
+                    // form_edit.setAttribute("action", "{{ route('keuangan.index') }}" + '/' + id)
                 }
             });
         }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Structure;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class StructureController extends Controller
@@ -122,7 +123,7 @@ class StructureController extends Controller
                 $request->foto->move(public_path('images\uploads'), $fileName);
             }
 
-            $validated['foto'] = $foto ?? $structure->id;
+            $validated['foto'] = $foto ?? $structure->foto;
 
             $update = Structure::where('id', $structure->id)
                 ->update($validated);
@@ -143,6 +144,8 @@ class StructureController extends Controller
      */
     public function destroy(Structure $structure)
     {
-        //
+        $structure = Structure::find($structure->id);
+        $structure->delete();
+        Session::flash('success', 'Profile Successfully Deleted');
     }
 }
