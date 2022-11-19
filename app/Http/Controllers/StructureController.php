@@ -14,7 +14,8 @@ class StructureController extends Controller
      */
     public function index()
     {
-        //
+        $structure = Structure::all();
+        return view('structure.index', compact('structure'));
     }
 
     /**
@@ -35,7 +36,39 @@ class StructureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validated = $request->validate([
+            'foto' => 'mimes:jpg,png,jpeg|max:2048',
+            'nama' => 'required',
+            'alamat' => 'required',
+            'jabatan' => 'required',
+            'no_hp' => 'required',
+        ]);
+
+        if ($validated) {
+            $file       = $request->file('foto');
+            if ($file) {
+                $name       = $file->getClientOriginalName();
+                $fileName   = time() . $name . '.' . $request->foto->extension();
+                $foto      = '\images/uploads/' . $fileName;
+                $request->foto->move(public_path('images\uploads'), $fileName);
+            }
+
+            $insert = Structure::create([
+                'foto' => $foto ?? '',
+                'nama' => $request->nama,
+                'alamat' => $request->alamat,
+                'jabatan' => $request->jabatan,
+                'no_hp' => $request->no_hp,
+            ]);
+        }
+
+
+        if ($insert) {
+            return redirect()->back()->with('success', 'Profile Successfully Added');
+        } else {
+            return redirect()->back()->with('failed', 'Profile Failed To Add');
+        }
     }
 
     /**

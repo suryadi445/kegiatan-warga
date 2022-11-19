@@ -5,7 +5,7 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $title }}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ $action }}" method="{{ $method }}">
+            <form action="{{ $action }}" method="{{ $method }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     {{ $slot }}

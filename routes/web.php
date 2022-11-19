@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IdentityController;
 use App\Http\Controllers\KeuanganController;
+use App\Http\Controllers\StructureController;
 use Illuminate\Support\Facades\Route;
 
 // Route for auth
@@ -24,3 +25,6 @@ Route::resource('/activity', ActivityController::class);
 
 // Route for Identity
 Route::resource('/identity', IdentityController::class);
+
+// Route for Identity
+Route::resource('/structure', StructureController::class);

@@ -50,7 +50,7 @@ class AuthController extends Controller
         }
 
         return back()->with([
-            'failedLogin' => 'Login Failed !',
+            'failed' => 'Login Failed !',
         ])->onlyInput('username');
     }
 

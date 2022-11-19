@@ -137,6 +137,12 @@
                                 <i class="bi bi-person-circle"></i> Profile
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/structure">
+                                <span class="align-text-bottom"></span>
+                                <i class="bi bi-people-fill"></i> Struktur Organisasi
+                            </a>
+                        </li>
                     </ul>
 
                     <h6
