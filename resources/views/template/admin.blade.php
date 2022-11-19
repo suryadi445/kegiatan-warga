@@ -112,35 +112,54 @@
                 <div class="position-sticky pt-3 sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/dashboard">
+                            <a class="nav-link {{ request()->is('dashboard') ? 'active fw-bold fs-6' : '' }}"
+                                aria-current="page" href="/dashboard">
                                 <span class="align-text-bottom"></span>
                                 <i class="bi bi-speedometer2"></i>
                                 Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="/keuangan">
+                            <a class="nav-link {{ request()->is('keuangan') ? 'active fw-bold fs-6' : '' }}"
+                                href="/keuangan">
                                 <span class="align-text-bottom"></span>
                                 <i class="bi bi-wallet"></i>
                                 Keuangan
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="/activity">
+                            <a class="nav-link {{ request()->is('activity') ? 'active fw-bold fs-6' : '' }}"
+                                href="/activity">
                                 <span class="align-text-bottom"></span>
                                 <i class="bi bi-journal-text"></i> Kegiatan
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="/identity">
+                            <a class="nav-link {{ request()->is('identity') ? 'active fw-bold fs-6' : '' }}"
+                                href="/identity">
                                 <span class="align-text-bottom"></span>
                                 <i class="bi bi-person-circle"></i> Profile
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="/structure">
+                            <a class="nav-link {{ request()->is('structure') ? 'active fw-bold fs-6' : '' }}"
+                                href="/structure">
                                 <span class="align-text-bottom"></span>
                                 <i class="bi bi-people-fill"></i> Struktur Organisasi
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('galeri') ? 'active fw-bold fs-6' : '' }}"
+                                href="/galeri">
+                                <span class="align-text-bottom"></span>
+                                <i class="bi bi-image"></i> Galeri
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('galeri_slideshow') ? 'active fw-bold fs-6' : '' }}"
+                                href="/galeri_slideshow">
+                                <span class="align-text-bottom"></span>
+                                <i class="bi bi-images"></i> Galeri SLideshow
                             </a>
                         </li>
                     </ul>
