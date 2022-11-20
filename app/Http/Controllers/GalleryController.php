@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Activity;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 
 class GalleryController extends Controller
 {
@@ -83,9 +85,10 @@ class GalleryController extends Controller
      * @param  \App\Models\Gallery  $gallery
      * @return \Illuminate\Http\Response
      */
-    public function edit(Gallery $gallery)
+    public function edit($id)
     {
-        //
+        $data = Gallery::findOrFail($id);
+        return response()->json($data);
     }
 
     /**
@@ -108,6 +111,9 @@ class GalleryController extends Controller
      */
     public function destroy(Gallery $gallery)
     {
-        //
+        $gallery = Gallery::find($gallery->id);
+        $gallery->delete();
+
+        Session::flash('success', 'Images Successfully Deleted');
     }
 }
