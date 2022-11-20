@@ -3,6 +3,8 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\GallerySlideshowController;
 use App\Http\Controllers\IdentityController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\StructureController;
@@ -26,5 +28,11 @@ Route::resource('/activity', ActivityController::class);
 // Route for Identity
 Route::resource('/identity', IdentityController::class);
 
-// Route for Identity
+// Route for Structure organisasai
 Route::resource('/structure', StructureController::class);
+
+// Route for Gallery
+Route::resource('/gallery', GalleryController::class);
+
+// Route for Identity
+Route::resource('/gallery_slideshow', GallerySlideshowController::class);

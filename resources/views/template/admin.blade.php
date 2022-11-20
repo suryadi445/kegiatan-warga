@@ -149,15 +149,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('galeri') ? 'active fw-bold fs-6' : '' }}"
-                                href="/galeri">
+                            <a class="nav-link {{ request()->is('gallery') ? 'active fw-bold fs-6' : '' }}"
+                                href="/gallery">
                                 <span class="align-text-bottom"></span>
                                 <i class="bi bi-image"></i> Galeri
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('galeri_slideshow') ? 'active fw-bold fs-6' : '' }}"
-                                href="/galeri_slideshow">
+                            <a class="nav-link {{ request()->is('gallery_slideshow') ? 'active fw-bold fs-6' : '' }}"
+                                href="/gallery_slideshow">
                                 <span class="align-text-bottom"></span>
                                 <i class="bi bi-images"></i> Galeri SLideshow
                             </a>
