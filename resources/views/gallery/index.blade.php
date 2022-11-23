@@ -33,10 +33,9 @@
             </div>
         </div>
     </div>
-    <p class="kegiatan_warga"></p>
     <div class="row mt-3">
         <div class="col-sm-12">
-            <div class="row row-cols-1 row-cols-md-6 g-4">
+            <div class="row row-cols-1 row-cols-md-6 g-4" id="loop-image">
                 @foreach ($gallery as $item)
                     <div class="col">
                         <div class="card">
@@ -72,16 +71,34 @@
     </select>
 </x-modal>
 
+
 @push('jquery')
     <script>
         $(document).ready(function() {
             $('#kegiatan_warga').change(function() {
+
                 var id = $(this).val();
+                if (id == '') {
+                    window.location.reload()
+                }
                 $.ajax({
                     type: 'GET', //THIS NEEDS TO BE GET
                     url: "{{ route('gallery.index') }}" + '/' + id + '/edit',
                     success: function(response) {
-                        console.log(response);
+
+                        let image = '';
+                        $.each(response, function(key, value) {
+                            image += `
+                                        <div class="col">
+                                            <div class="card">
+                                                <button type="button" data-id="{{ $item->id }}" class="btn-close btn_delete"></button>
+                                                    <img src="` + value.image + `" alt="">
+                                            </div>
+                                        </div>`;
+
+                            $('#loop-image').html(image)
+                        });
+
                     }
                 });
             });

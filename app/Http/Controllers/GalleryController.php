@@ -85,9 +85,9 @@ class GalleryController extends Controller
      * @param  \App\Models\Gallery  $gallery
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_kegiatan_warga)
     {
-        $data = Gallery::findOrFail($id);
+        $data = Gallery::where('id_kegiatan_warga', $id_kegiatan_warga)->get();
         return response()->json($data);
     }
 
