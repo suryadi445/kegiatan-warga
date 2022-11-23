@@ -112,6 +112,13 @@
                 <div class="position-sticky pt-3 sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
+                            <a class="nav-link {{ request()->is('profile') ? 'active fw-bold fs-6' : '' }}"
+                                aria-current="page" href="/profile">
+                                <span class="align-text-bottom"></span>
+                                <i class="bi bi-person-circle"></i> Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link {{ request()->is('dashboard') ? 'active fw-bold fs-6' : '' }}"
                                 aria-current="page" href="/dashboard">
                                 <span class="align-text-bottom"></span>
@@ -138,7 +145,7 @@
                             <a class="nav-link {{ request()->is('identity') ? 'active fw-bold fs-6' : '' }}"
                                 href="/identity">
                                 <span class="align-text-bottom"></span>
-                                <i class="bi bi-person-circle"></i> Profile
+                                <i class="bi bi-sliders2"></i> Setting Akun
                             </a>
                         </li>
                         <li class="nav-item">

@@ -7,6 +7,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\GallerySlideshowController;
 use App\Http\Controllers\IdentityController;
 use App\Http\Controllers\KeuanganController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StructureController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,3 +37,6 @@ Route::resource('/gallery', GalleryController::class);
 
 // Route for Identity
 Route::resource('/gallery_slideshow', GallerySlideshowController::class);
+
+// Route for Profile
+Route::resource('/profile', ProfileController::class);
