@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('register', [AuthController::class, 'register'])->name('register')->middleware('guest');
 Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-Route::resource('/', AuthController::class);
+Route::resource('/', AuthController::class)->middleware('guest');
 
 // Route for Keuangan
 Route::resource('/keuangan', KeuanganController::class);

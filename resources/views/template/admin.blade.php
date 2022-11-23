@@ -120,7 +120,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('dashboard') ? 'active fw-bold fs-6' : '' }}"
-                                aria-current="page" href="/dashboard">
+                                aria-current="page" href="/">
                                 <span class="align-text-bottom"></span>
                                 <i class="bi bi-speedometer2"></i>
                                 Dashboard
@@ -171,14 +171,6 @@
                         </li>
                     </ul>
 
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
-                        <span>Saved reports</span>
-                        <a class="link-secondary" href="#" aria-label="Add a new report">
-                            <span data-feather="plus-circle" class="align-text-bottom"></span>
-                        </a>
-                    </h6>
-
                 </div>
             </nav>
 
@@ -188,8 +180,11 @@
                         <div class="alert alert-secondary" role="alert">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                    <li class="breadcrumb-item"><a href="/dashboard"
+                                            class="text-decoration-none">Home</a>
+                                    </li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{ request()->path() }}
+                                    </li>
                                 </ol>
                             </nav>
                         </div>

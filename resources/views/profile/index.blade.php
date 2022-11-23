@@ -9,8 +9,6 @@
                         <img src="https://source.unsplash.com/profile/w=600" class="card-img-top" alt="...">
                         <div class="card-body text-center">
                             <p class="text-uppercase">{{ auth()->user()->nama }}</p>
-                            <p>profession</p>
-                            <p>Address</p>
                         </div>
                     </div>
                 </div>
@@ -24,38 +22,10 @@
                                         <div class="col-sm-12">
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    Full Name
+                                                    Username
                                                 </div>
                                                 <div class="col-sm-8">
-                                                    Suryadi
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    Phone
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    089678468651
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    Full Name
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    Suryadi
+                                                    {{ auth()->user()->username }}
                                                 </div>
                                             </div>
                                         </div>
