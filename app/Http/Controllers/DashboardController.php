@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\Keuangan;
 use Illuminate\Http\Request;
 
@@ -10,6 +11,7 @@ class DashboardController extends Controller
     public function index()
     {
 
+        // query untuk dashboard keuangan masuk dan keuangan keluar
         $in = [];
         $out = [];
         $result = 0;
@@ -46,11 +48,24 @@ class DashboardController extends Controller
             $result_out = implode(',', $out);
         }
 
-        // echo json_decode($result_in);
-        // die;
+        // query for dahsboard kegiatan warga dan pesertanya
+        $thisMonth = date('m');
+        $lastMonth = $thisMonth - 3;
+        $activity = Activity::whereMonth('created_at', '<=', $thisMonth)
+            ->whereMonth('created_at', '>=', $lastMonth)
+            ->get();
 
+        $kegiatans = [];
+        $pesertas  = [];
 
+        foreach ($activity as $key => $value) {
+            $kegiatans[] = '"' . $value->judul . '"';
+            $pesertas[] = $value->peserta ?? 0;
+        }
 
-        return view('dashboard.index', compact('result_in', 'result_out'));
+        $kegiatan = implode(',', $kegiatans);
+        $peserta = implode(',', $pesertas);
+
+        return view('dashboard.index', compact('result_in', 'result_out', 'kegiatan', 'peserta'));
     }
 }
