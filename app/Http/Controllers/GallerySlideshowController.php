@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\GallerySlideshow;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 
 class GallerySlideshowController extends Controller
 {
@@ -14,7 +16,8 @@ class GallerySlideshowController extends Controller
      */
     public function index()
     {
-        //
+        $gallery = GallerySlideshow::all();
+        return view('gallery_slideshow.index', compact('gallery'));
     }
 
     /**
@@ -35,7 +38,31 @@ class GallerySlideshowController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'image' => 'required',
+            'image.*' => 'mimes:jpg,png,jpeg|max:2048'
+        ]);
+
+        $files = [];
+        $insert = [];
+
+        if ($request->hasfile('image')) {
+            foreach ($request->file('image') as $file) {
+                $name = time() . $file->getClientOriginalName() . '.' . $file->extension();
+                if ($file->move(public_path('images\uploads'), $name)) {
+                    $files[] = $name;
+                    $insert = GallerySlideshow::create([
+                        "image" => '\images/uploads/' . $name,
+                    ]);
+                }
+            }
+        }
+
+        if ($insert) {
+            return back()->with('success', 'Success! file uploaded');
+        } else {
+            return back()->with('failed', 'Alert! file not uploaded');
+        }
     }
 
     /**
@@ -80,6 +107,9 @@ class GallerySlideshowController extends Controller
      */
     public function destroy(GallerySlideshow $gallerySlideshow)
     {
-        //
+        $gallerySlideshow = GallerySlideshow::find(1);
+        $gallerySlideshow->delete();
+
+        Session::flash('success', 'Images Successfully Deleted');
     }
 }
