@@ -41,7 +41,7 @@ class IdentityController extends Controller
         ]);
 
         $identity = Identity::where('id', 1)->get();
-        $image    = $identity[0]->logo;
+        $image    = $identity[0]->logo ?? '';
         if ($validation) {
             $file       = $request->file('logo');
             $name       = $file->getClientOriginalName();
@@ -54,24 +54,26 @@ class IdentityController extends Controller
             }
         }
 
-        if ($identity) {
+        // dd(count($identity));
+
+        if (count($identity) > 0) {
             $update = Identity::where('id', 1)
                 ->update([
                     'logo' => $image,
-                    'nama_profile' => $request->nama_profile,
-                    'alamat' => $request->alamat,
-                    'telepon' => $request->telepon,
-                    'whatsapp' => $request->whatsapp,
-                    'slogan' => $request->slogan,
+                    'nama_profile' => $request->nama_profile ?? '',
+                    'alamat' => $request->alamat ?? '',
+                    'telepon' => $request->telepon ?? '',
+                    'whatsapp' => $request->whatsapp ?? '',
+                    'slogan' => $request->slogan ?? '',
                 ]);
         } else {
             $insert = Identity::create([
-                'logo' => $request->logo,
-                'nama_profile' => $request->nama_profile,
-                'alamat' => $request->alamat,
-                'telepon' => $request->telepon,
-                'whatsapp' => $request->whatsapp,
-                'slogan' => $request->slogan,
+                'logo' => $image,
+                'nama_profile' => $request->nama_profile ?? '',
+                'alamat' => $request->alamat ?? '',
+                'telepon' => $request->telepon ?? '',
+                'whatsapp' => $request->whatsapp ?? '',
+                'slogan' => $request->slogan ?? '',
             ]);
         }
 
