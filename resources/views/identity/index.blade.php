@@ -26,7 +26,11 @@
                                             <img src="{{ $identity->logo }}" alt="image" width="10%">
                                         @endif
                                         <input class="form-control mt-2" name="logo" type="file" id="formFile"
+<<<<<<< HEAD
                                             value="{{ $identity->logo ?? '' }}">
+=======
+                                            value="{{ $identity->logo }}">
+>>>>>>> 8ce780eb83d7571a8c4acf7742e51dce6c3be135
                                     </div>
                                 </td>
                             </tr>
@@ -37,7 +41,11 @@
                                 <td>
                                     <div class="mb-3">
                                         <x-input placeholder="Input Nama Profile" tipe="nama_profile" attr="nama_profile"
+<<<<<<< HEAD
                                             value="{{ $identity->nama_profile ?? '' }}">
+=======
+                                            value="{{ $identity->nama_profile }}">
+>>>>>>> 8ce780eb83d7571a8c4acf7742e51dce6c3be135
                                         </x-input>
                                     </div>
                                 </td>
@@ -49,7 +57,11 @@
                                 <td>
                                     <div class="mb-3">
                                         <x-input placeholder="Input Alamat" tipe="alamat" attr="alamat"
+<<<<<<< HEAD
                                             value="{{ $identity->alamat ?? '' }}"></x-input>
+=======
+                                            value="{{ $identity->alamat }}"></x-input>
+>>>>>>> 8ce780eb83d7571a8c4acf7742e51dce6c3be135
                                     </div>
                                 </td>
                             </tr>
@@ -60,7 +72,11 @@
                                 <td>
                                     <div class="mb-3">
                                         <x-input placeholder="Input Nomor Telepon" tipe="telepon" attr="telepon"
+<<<<<<< HEAD
                                             value="{{ $identity->telepon ?? '' }}"></x-input>
+=======
+                                            value="{{ $identity->telepon }}"></x-input>
+>>>>>>> 8ce780eb83d7571a8c4acf7742e51dce6c3be135
                                     </div>
                                 </td>
                             </tr>
@@ -71,7 +87,11 @@
                                 <td>
                                     <div class="mb-3">
                                         <x-input placeholder="Input No Whatsapp" tipe="whatsapp" attr="whatsapp"
+<<<<<<< HEAD
                                             value="{{ $identity->whatsapp ?? '' }}"></x-input>
+=======
+                                            value="{{ $identity->whatsapp }}"></x-input>
+>>>>>>> 8ce780eb83d7571a8c4acf7742e51dce6c3be135
                                     </div>
                                 </td>
                             </tr>
@@ -81,7 +101,11 @@
                                 </td>
                                 <td>
                                     <div class="mb-3">
+<<<<<<< HEAD
                                         <x-textarea height="100px" attr="slogan" value="{{ $identity->slogan ?? '' }}">
+=======
+                                        <x-textarea height="100px" attr="slogan" value="{{ $identity->slogan }}">
+>>>>>>> 8ce780eb83d7571a8c4acf7742e51dce6c3be135
                                         </x-textarea>
                                     </div>
                                 </td>

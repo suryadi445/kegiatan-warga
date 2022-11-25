@@ -85,6 +85,7 @@
                     type: 'GET', //THIS NEEDS TO BE GET
                     url: "{{ route('gallery.index') }}" + '/' + id + '/edit',
                     success: function(response) {
+<<<<<<< HEAD
                         let image = '';
                         if (response.length > 0) {
                             $.each(response, function(key, value) {
@@ -104,6 +105,22 @@
                                     </div>`;
                         }
                         $('#loop-image').html(image)
+=======
+
+                        let image = '';
+                        $.each(response, function(key, value) {
+                            image += `
+                                        <div class="col">
+                                            <div class="card">
+                                                <button type="button" data-id="{{ $item->id }}" class="btn-close btn_delete"></button>
+                                                    <img src="` + value.image + `" alt="">
+                                            </div>
+                                        </div>`;
+
+                            $('#loop-image').html(image)
+                        });
+
+>>>>>>> 8ce780eb83d7571a8c4acf7742e51dce6c3be135
                     }
                 });
             });
