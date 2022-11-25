@@ -20,6 +20,8 @@ Route::resource('/', AuthController::class)->middleware('guest');
 // Route for Keuangan
 Route::resource('/keuangan', KeuanganController::class);
 Route::get('file-export', [KeuanganController::class, 'fileExport'])->name('file-export');
+Route::get('export-pdf', [KeuanganController::class, 'createPDF'])->name('export-pdf');
+
 
 
 // Route for Dashboard

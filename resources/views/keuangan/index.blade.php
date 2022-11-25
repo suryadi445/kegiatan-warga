@@ -11,10 +11,16 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-2">
                     <form action="{{ route('file-export') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <a class="btn btn-success" href="{{ route('file-export') }}">Export data</a>
+                        <a class="btn btn-success d-block" href="{{ route('file-export') }}">Export Excel</a>
+                    </form>
+                </div>
+                <div class="col-sm-2">
+                    <form action="{{ route('export-pdf') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <a class="btn btn-info d-block" href="{{ route('export-pdf') }}">Export PDF</a>
                     </form>
                 </div>
             </div>

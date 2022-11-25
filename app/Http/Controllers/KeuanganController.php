@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Models\Keuangan;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -17,6 +18,18 @@ class KeuanganController extends Controller
     public function fileExport()
     {
         return Excel::download(new KeuanganExport, 'users-collection.xlsx');
+    }
+
+    public function createPDF()
+    {
+        // retreive all records from db
+        $data = Keuangan::all();
+        $saldo_in = Keuangan::where('tipe', 'in')->sum('nominal');
+        $saldo_out = Keuangan::where('tipe', 'out')->sum('nominal');
+        $saldo = $saldo_in - $saldo_out;
+
+        $pdf = PDF::loadView('keuangan.table-export', compact('data', 'saldo'));
+        return $pdf->download('pdf_file.pdf');
     }
     /**
      * Display a listing of the resource.
