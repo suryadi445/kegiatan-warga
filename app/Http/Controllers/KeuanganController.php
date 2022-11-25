@@ -5,11 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Keuangan;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\KeuanganExport;
+
 
 
 
 class KeuanganController extends Controller
 {
+
+    public function fileExport()
+    {
+        return Excel::download(new KeuanganExport, 'users-collection.xlsx');
+    }
     /**
      * Display a listing of the resource.
      *

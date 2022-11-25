@@ -86,7 +86,7 @@
 
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-uppercase text-center"
-            href="/">{{ auth()->user()->nama ?? 'Admin' }}</a>
+            href="/profile">{{ auth()->user()->nama ?? 'Admin' }}</a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -100,7 +100,6 @@
                     @csrf
                     <button class="nav-link px-3 py-0"
                         style="background-color: #212529; border-color: transparent !important;">Logout</button>
-                    {{-- <a class="" href="#">Log out</a> --}}
                 </form>
             </div>
         </div>
@@ -120,7 +119,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('dashboard') ? 'active fw-bold fs-6' : '' }}"
-                                aria-current="page" href="/">
+                                aria-current="page" href="/dashboard">
                                 <span class="align-text-bottom"></span>
                                 <i class="bi bi-speedometer2"></i>
                                 Dashboard
@@ -171,6 +170,7 @@
                         </li>
                     </ul>
 
+
                 </div>
             </nav>
 
@@ -180,7 +180,7 @@
                         <div class="alert alert-secondary" role="alert">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/dashboard"
+                                    <li class="breadcrumb-item"><a href="/profile"
                                             class="text-decoration-none">Home</a>
                                     </li>
                                     <li class="breadcrumb-item active" aria-current="page">{{ request()->path() }}

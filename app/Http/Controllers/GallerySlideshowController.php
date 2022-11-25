@@ -107,7 +107,7 @@ class GallerySlideshowController extends Controller
      */
     public function destroy(GallerySlideshow $gallerySlideshow)
     {
-        $gallerySlideshow = GallerySlideshow::find(1);
+        $gallerySlideshow = GallerySlideshow::find($gallerySlideshow->id);
         $gallerySlideshow->delete();
 
         Session::flash('success', 'Images Successfully Deleted');

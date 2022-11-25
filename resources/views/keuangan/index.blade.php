@@ -10,6 +10,14 @@
     </div>
     <div class="row">
         <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-12">
+                    <form action="{{ route('file-export') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <a class="btn btn-success" href="{{ route('file-export') }}">Export data</a>
+                    </form>
+                </div>
+            </div>
             <div class="row align-items-center">
                 <div class="col-sm-9">
                     <h6 class="">Saldo Akhir : </h6>
